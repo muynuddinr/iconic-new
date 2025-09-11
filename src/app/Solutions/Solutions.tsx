@@ -55,7 +55,7 @@ const SolutionsPage = () => {
         "Customizable sizes and hardware options available.",
         "Expert installation ensuring proper sealing and functionality."
       ],
-      img: img2.src
+      img: img3.src
     },
     {
       icon: Droplet,
@@ -70,7 +70,7 @@ const SolutionsPage = () => {
         "Comprehensive supply of components: pressure vessels, valves, resins, and filter media.",
         "Expert solutions for ETP, STP, and cooling tower chemical treatments."
       ],
-      img: img3.src
+      img: img2.src
     },
   ];
 
