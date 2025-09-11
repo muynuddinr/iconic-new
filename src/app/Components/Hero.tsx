@@ -68,7 +68,7 @@ const Hero = () => {
                     className="mt-6 max-w-2xl mx-auto text-lg text-gray-300 leading-relaxed"
                 >
                     {/* UPDATED: Description to reflect the merger */}
-                    Uniting our legacies to deliver premier solutions in steel fabrication, HVAC, water treatment, and fire & safety with unmatched quality.
+                    Uniting our legacies to deliver premier solutions in steel fabrication, HVAC,& safety with unmatched quality.
                 </motion.p>
 
                 <motion.div 
