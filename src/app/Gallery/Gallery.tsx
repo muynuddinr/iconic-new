@@ -53,14 +53,10 @@ const galleryItems: GalleryItem[] = [
 
 // --- Main Gallery Component ---
 const GalleryPage = () => {
-  const [selectedCategory, setSelectedCategory] = React.useState('all');
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
 
-  const categories = ['all', 'interior', 'exterior', 'furniture'];
-
-  const filteredItems = selectedCategory === 'all'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === selectedCategory);
+  // Directly use all gallery items as there is no filtering
+  const filteredItems = galleryItems;
 
   const handleNext = () => {
     if (selectedIndex === null) return;
@@ -81,7 +77,7 @@ const GalleryPage = () => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex, filteredItems]);
+  }, [selectedIndex, filteredItems]); // Dependencies updated to reflect the constant nature of filteredItems
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-800 py-20 px-4 sm:px-6 lg:px-8">
@@ -104,13 +100,7 @@ const GalleryPage = () => {
         </motion.p>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mb-16">
-        {categories.map((category) => (
-          <button key={category} onClick={() => setSelectedCategory(category)} className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black ${selectedCategory === category ? 'bg-black text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-200'}`}>
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))}
-      </div>
+      {/* Category filter buttons have been removed */}
 
       <div className="max-w-7xl mx-auto">
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -129,7 +119,6 @@ const GalleryPage = () => {
                 <motion.div layoutId={item.imageUrl} className="aspect-[3/4]">
                    <img src={item.imageUrl} alt="" className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"/>
                 </motion.div>
-                {/* Image title on hover has been removed */}
               </motion.div>
             ))}
           </AnimatePresence>

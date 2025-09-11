@@ -1,20 +1,30 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
+import img1 from '../../../public/logos/ashirvad.png'
+import img2 from '../../../public/logos/biocon.png'
+import img3 from '../../../public/logos/geltec.png'
+import img4 from '../../../public/logos/hikal.png'
+import img5 from '../../../public/logos/himalaya.png'
+import img6 from '../../../public/logos/omniactive.png'
+import img7 from '../../../public/logos/reckitt.png'
+import img8 from '../../../public/logos/schaeffler.png'
+import img9 from '../../../public/logos/strides.png'
+import img10 from '../../../public/logos/titan.png'
 
 const TrustedBy = () => {
 
     const clientLogos = [
-        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Himalaya_Logo.svg/1200px-Himalaya_Logo.svg.png', name: "Himalaya" },
-        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Biocon-logo.svg/2560px-Biocon-logo.svg.png', name: "Biocon" },
-        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Titan_Company_Logo.svg/2560px-Titan_Company_Logo.svg.png', name: "Titan" },
-        { src: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Strides_Pharma_Science_logo.svg/1200px-Strides_Pharma_Science_logo.svg.png', name: "Strides" },
-        { src: 'https://www.hikal.com/wp-content/uploads/2021/08/Hikal-Logo-2021-e1644487271514.png', name: "Hikal" },
-        { src: 'https://www.omniactive.com/wp-content/uploads/2021/02/logo.svg', name: "OmniActive" },
-        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Reckitt_logo.svg/2560px-Reckitt_logo.svg.png', name: "Reckitt" },
-        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Schaeffler_logo_2017.svg/2560px-Schaeffler_logo_2017.svg.png', name: "Schaeffler" },
-        { src: 'https://www.geltec.in/assets/images/logo.png', name: "Geltec" },
-        { src: 'https://www.ashirvad.com/wp-content/uploads/2023/11/logo-a-blue.svg', name: "Ashirvad" },
+        { src: img1.src, name: "Himalaya" },
+        { src: img2.src, name: "Biocon" },
+        { src: img3.src, name: "Titan" },
+        { src: img4.src, name: "Strides" },
+        { src: img5.src, name: "Hikal" },
+        { src: img6.src, name: "OmniActive" },
+        { src: img7.src, name: "Reckitt" },
+        { src: img8.src, name: "Schaeffler" },
+        { src: img9.src, name: "Geltec" },
+        { src: img10.src, name: "Ashirvad" },
     ];
     
     // Duplicate logos for a seamless loop

@@ -115,7 +115,7 @@ const Services = () => {
                     >
                         <h3 className="text-2xl font-bold mb-3 text-slate-900">And Much More...</h3>
                         <p className="text-gray-600 mb-6">Our capabilities extend beyond this list. Contact us for custom solutions.</p>
-                        <a href="#contact" className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-[#1479ae] text-[#1479ae] rounded-full font-semibold hover:bg-[#1479ae] hover:text-white transition-colors duration-300">
+                        <a href="/Contact" className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-[#1479ae] text-[#1479ae] rounded-full font-semibold hover:bg-[#1479ae] hover:text-white transition-colors duration-300">
                             Get in Touch
                         </a>
                     </motion.div>

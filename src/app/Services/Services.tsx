@@ -44,10 +44,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, isExpanded, onToggle
                     <service.icon className="w-8 h-8 text-white" />
                 </div>
             </div>
-            <div className="flex items-center gap-1 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold">
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <span>Premium</span>
-            </div>
+
         </div>
         <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
         <p className="text-gray-600 mb-6 text-sm leading-relaxed">{service.description}</p>
@@ -85,7 +82,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, isExpanded, onToggle
             {isExpanded ? 'Show Less' : `View All Features`}
             <ChevronRight className={`w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 ${isExpanded ? 'transform rotate-90' : 'rotate-0'}`} />
           </button>
-          <a href="#contact" className="px-5 py-2 bg-[#1479ae] text-white rounded-lg text-sm font-semibold hover:bg-blue-800 transition-all duration-300 shadow-sm hover:shadow-lg transform hover:scale-105">
+          <a href="/Contact" className="px-5 py-2 bg-[#1479ae] text-white rounded-lg text-sm font-semibold hover:bg-blue-800 transition-all duration-300 shadow-sm hover:shadow-lg transform hover:scale-105">
             Get Quote
           </a>
         </div>

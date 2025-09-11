@@ -1,7 +1,10 @@
 'use client'
 import React from 'react';
+import Link from 'next/link'; // 1. IMPORT LINK COMPONENT
 import { motion, AnimatePresence } from 'framer-motion';
-import img1 from '../../../public/1.png'
+import img1 from '../../../public/solution3.jpeg'
+import img2 from '../../../public/solution1.jpeg'
+import img3 from '../../../public/solution2.jpeg'
 
 import {
   Award,
@@ -11,7 +14,6 @@ import {
   TrendingUp,
   Users,
   Globe,
-  Target,
   CheckSquare,
   Microscope,
   Gauge,
@@ -53,7 +55,7 @@ const SolutionsPage = () => {
         "Customizable sizes and hardware options available.",
         "Expert installation ensuring proper sealing and functionality."
       ],
-      img: img1.src
+      img: img2.src
     },
     {
       icon: Droplet,
@@ -68,8 +70,29 @@ const SolutionsPage = () => {
         "Comprehensive supply of components: pressure vessels, valves, resins, and filter media.",
         "Expert solutions for ETP, STP, and cooling tower chemical treatments."
       ],
-      img: img1.src
+      img: img3.src
     },
+  ];
+
+  const coreExpertise = [
+    {
+      category: 'Controlled Environments',
+      solution: 'Clean Room Solutions',
+      icon: Microscope,
+      color: 'text-teal-500'
+    },
+    {
+      category: 'Safety & Compliance',
+      solution: 'Fire Rated Steel Doors',
+      icon: Shield,
+      color: 'text-red-500'
+    },
+    {
+      category: 'Resource Management',
+      solution: 'Industrial Water Treatment',
+      icon: Droplet,
+      color: 'text-blue-500'
+    }
   ];
 
   const supplies = [
@@ -102,11 +125,11 @@ const SolutionsPage = () => {
     <main className="bg-gray-50 text-gray-800 font-sans">
         {/* Section 1: Hero */}
         <section className="relative text-white py-32 md:py-40">
-            <div className="absolute inset-0 bg-slate-900"></div>
             <div 
-                className="absolute inset-0 bg-cover bg-center opacity-20"
-                style={{backgroundImage: 'url(https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4-0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)'}}
+                className="absolute inset-0 bg-cover bg-center"
+                style={{backgroundImage: 'url(https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4-0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D)'}}
             ></div>
+            <div className="absolute inset-0 bg-slate-900/70"></div>
             
             <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10 text-center">
                  <motion.div
@@ -114,7 +137,7 @@ const SolutionsPage = () => {
                     animate="visible"
                     variants={containerVariants}
                  >
-                    <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 mb-6">
+                    <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/20 mb-6">
                         <Award className="w-5 h-5 text-yellow-400" />
                         <span className="text-sm font-medium">15+ Years of Excellence</span>
                     </motion.div>
@@ -128,13 +151,39 @@ const SolutionsPage = () => {
             </div>
         </section>
 
-        {/* Section 2: Solutions Accordion */}
+        {/* Section 2: Core Expertise Grid */}
+        <section className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Our Core Expertise</h2>
+                    <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                        We specialize in three key areas to provide comprehensive industrial solutions, ensuring quality, safety, and efficiency.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {coreExpertise.map((item, index) => (
+                    <div key={index} className="bg-gray-50 p-8 rounded-xl border border-gray-200/90 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                      <item.icon className={`w-12 h-12 mb-4 ${item.color}`} strokeWidth={1.5} />
+                      <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                        {item.category}
+                      </p>
+                      <h3 className="mt-2 text-2xl font-bold text-slate-800">
+                        {item.solution}
+                      </h3>
+                    </div>
+                  ))}
+                </div>
+            </div>
+        </section>
+
+
+        {/* Section 3: Detailed Solutions Accordion */}
         <section id="solutions" className="py-24">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Our Turnkey Solutions</h2>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Our Turnkey Solutions in Detail</h2>
                     <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-                        We deliver excellence across all industrial sectors with over 15 years of proven expertise and innovation. Select a solution to learn more.
+                        We deliver excellence across all industrial sectors with over 15 years of proven expertise. Select a solution to learn more.
                     </p>
                 </div>
                 
@@ -178,7 +227,7 @@ const SolutionsPage = () => {
                                                 </div>
                                             </div>
                                             <div className="h-64 rounded-xl overflow-hidden">
-                                                <img src={sol.img} alt={sol.title} className="w-full h-full object-cover"/>
+                                                <img src={sol.img} alt={sol.title} className="w-full h-full object-cover object-center"/>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -190,7 +239,7 @@ const SolutionsPage = () => {
             </div>
         </section>
 
-        {/* Section 3: Why Choose Us */}
+        {/* Section 4: Why Choose Us */}
         <section className="py-24 bg-white">
              <div className="max-w-7xl mx-auto px-6 lg:px-8">
                  <div className="text-center mb-16">
@@ -219,8 +268,8 @@ const SolutionsPage = () => {
              </div>
         </section>
 
-        {/* Section 4: Premium Supplies */}
-        <section className="py-24 bg-gray-50">
+        {/* Section 5: Premium Supplies */}
+        <section className="py-24">
              <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
                      <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full font-semibold mb-4 text-sm">
@@ -254,7 +303,7 @@ const SolutionsPage = () => {
              </div>
         </section>
 
-        {/* Section 5: CTA */}
+        {/* Section 6: CTA */}
         <section className="py-24 bg-[#1479ae]">
             <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center text-white">
                  <h2 className="text-3xl sm:text-4xl font-extrabold">Ready to Enhance Your Operations?</h2>
@@ -262,13 +311,14 @@ const SolutionsPage = () => {
                     Contact us today for a free consultation on your cleanroom, fire safety, or water treatment requirements.
                  </p>
                  <div className="mt-8">
-                    <a
-                        href="#contact"
+                    {/* 2. UPDATED BUTTON WITH LINK TO /Contact */}
+                    <Link
+                        href="/Contact"
                         className="group inline-flex items-center justify-center px-8 py-4 bg-white text-[#1479ae] rounded-lg font-semibold hover:bg-gray-200 transform hover:scale-105 transition-all duration-300 shadow-lg"
                     >
                         Get a Free Consultation
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
+                    </Link>
                  </div>
             </div>
         </section>

@@ -174,7 +174,7 @@ const WhatWeAchieve = () => {
                     <a href="tel:9629466826" className="hover:text-[#1479ae] transition-colors">9629466826</a>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" className="px-8 py-4 bg-[#1479ae] text-white rounded-lg font-semibold text-lg
+                <a href="/Contact" className="px-8 py-4 bg-[#1479ae] text-white rounded-lg font-semibold text-lg
                                     transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-300/50">
                     Start Your Project
                 </a>
