@@ -63,7 +63,7 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto px-6 relative z-10 transform translate-y-12">
                 <motion.div 
                     className="text-center max-w-4xl mx-auto"
                     variants={containerVariants}
