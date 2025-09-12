@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, ArrowRight, FileText } from 'lucide-react'
 
@@ -8,10 +8,48 @@ const ContactPage = () => {
 
   const contactDetails = [
     { icon: MapPin, title: "Production Office", lines: ["Plot No. 3/540, A to R, Ganga Nagar", "Bedarapalli, Hosur-635126 Tamil Nadu"] },
-    { icon: Mail, title: "Email Us", lines: ["info@iconicsolutions.com", "sales@iconicsolutions.com"] },
+    { icon: Mail, title: "Email Us", lines: ["Info@iconiciits.com",] },
     { icon: Phone, title: "Call Us", lines: ["+91 8056554761", "+91 9789756826", "+91 9629466826"] },
     { icon: FileText, title: "GST Information", lines: ["Innovation GST: 33AAICI2795M1Z2", "Indus GST: 29BKYPD9433R1ZW"] },
   ];
+
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState<null | { ok: boolean; message: string }>(null)
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget as HTMLFormElement
+    const formData = new FormData(form)
+    const payload = {
+      name: String(formData.get('full-name') || ''),
+      company: String(formData.get('company') || ''),
+      email: String(formData.get('email') || ''),
+      message: String(formData.get('message') || ''),
+    }
+    if (!payload.email || !payload.message) {
+      setSubmitted({ ok: false, message: 'Email and message are required.' })
+      return
+    }
+    try {
+      setSubmitting(true)
+      setSubmitted(null)
+      const res = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data?.message || 'Failed to send message')
+      }
+      form.reset()
+      setSubmitted({ ok: true, message: 'Thanks! Your message has been sent.' })
+    } catch (err: any) {
+      setSubmitted({ ok: false, message: err?.message || 'Something went wrong.' })
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <main className="bg-gray-50 font-sans">
@@ -84,8 +122,13 @@ const ContactPage = () => {
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-2">Send us a Message</h2>
               <p className="text-gray-600 mb-8">Fill out the form and our team will get back to you within 24 hours.</p>
-              
-              <form action="#" method="POST" className="space-y-6">
+              {submitted && (
+                <div className={`mb-4 rounded-md border px-4 py-3 text-sm ${submitted.ok ? 'border-green-200 bg-green-50 text-green-800' : 'border-red-200 bg-red-50 text-red-800'}`}>
+                  {submitted.message}
+                </div>
+              )}
+
+              <form onSubmit={onSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="full-name" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -107,9 +150,10 @@ const ContactPage = () => {
                 <div>
                   <button
                     type="submit"
-                    className="group w-full inline-flex items-center justify-center px-8 py-4 bg-[#1479ae] text-white rounded-lg text-lg font-semibold hover:bg-[#116896] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#1479ae]/40"
+                    disabled={submitting}
+                    className={`group w-full inline-flex items-center justify-center px-8 py-4 rounded-lg text-lg font-semibold transform transition-all duration-300 shadow-lg ${submitting ? 'bg-gray-400 cursor-not-allowed text-white' : 'bg-[#1479ae] text-white hover:bg-[#116896] hover:scale-105 hover:shadow-[#1479ae]/40'}`}
                   >
-                    Send Message
+                    {submitting ? 'Sending...' : 'Send Message'}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </div>

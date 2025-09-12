@@ -64,12 +64,15 @@ const Navbar = () => {
     </a>
   )
 
-  // Reusable component for the Contact Us button
+  // Reusable component for the Contact Us button, now as a link
   const ContactButton: React.FC<ContactButtonProps> = ({ className = '' }) => (
-    <button className={`flex items-center justify-center px-5 py-2.5 bg-[#1479ae] text-white rounded-full font-semibold hover:bg-[#116896] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#1479ae]/50 group ${className}`}>
+    <a 
+      href="/Contact" 
+      className={`flex items-center justify-center px-5 py-2.5 bg-[#1479ae] text-white rounded-full font-semibold hover:bg-[#116896] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#1479ae]/50 group ${className}`}
+    >
       <span>Contact Us</span>
       <ChevronRight className="ml-1.5 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-    </button>
+    </a>
   )
   
   const menuVariants = {
