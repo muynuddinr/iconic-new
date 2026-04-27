@@ -1,9 +1,15 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Zap, Wrench } from "lucide-react";
 
 const Hero = () => {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -146,29 +152,31 @@ const Hero = () => {
                 <p className="text-xs text-slate-300 mt-2 font-medium">Scroll Down</p>
             </motion.div>
 
-            {/* Floating Particles Effect */}
-            <div className="absolute inset-0 pointer-events-none">
-                {[...Array(6)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400/40 to-blue-400/40 rounded-full"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                        }}
-                        animate={{
-                            y: [-20, 20],
-                            opacity: [0.3, 0.8, 0.3],
-                        }}
-                        transition={{
-                            duration: 3 + Math.random() * 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: Math.random() * 2,
-                        }}
-                    />
-                ))}
-            </div>
+            {/* Floating Particles Effect (Client Side Only) */}
+            {mounted && (
+                <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(6)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400/40 to-blue-400/40 rounded-full"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                top: `${Math.random() * 100}%`,
+                            }}
+                            animate={{
+                                y: [-20, 20],
+                                opacity: [0.3, 0.8, 0.3],
+                            }}
+                            transition={{
+                                duration: 3 + Math.random() * 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: Math.random() * 2,
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 };
